@@ -18,13 +18,14 @@ class Tnt2App(object):
 		self.master.title("TNT2")
 		self.master.geometry("600x400")
 		editor = Editor(self.master)
-		menubar = MenuBar(self.master)
+		menubar = MenuBar(self.master,editor)
 		editor.autoSave()
 		self.master.mainloop()
 
 class MenuBar(object):
-	def __init__(self,master):
+	def __init__(self,master,editor):
 		self.master = master
+		self.editor = editor
 		menubar = tk.Menu(self.master)
 		filemenu = tk.Menu(menubar,tearoff=0)
 		filemenu.add_command(label="Exit",command=self.exit_command)
@@ -47,14 +48,13 @@ class MenuBar(object):
 	def about_command(self):
 		label = tkMessageBox.showinfo("About","Version: "+__version__+"\nTNT2 is a re-write of TNT using the OOP features of python. It is a simple note-taking application designed for ease of use. \nCreated by Tshaba Phomolo Benedict.")
 
-	def remove_command(self):
-		pass
-
 	def clear_command(self):
-		pass	
+		self.editor.notelist.delete(0,tk.END)	
 
 	def priori_command(self):
-		pass 
+		priori_text = self.editor.notelist.get(tk.ANCHOR)
+ 		self.editor.notelist.delete(tk.ANCHOR)
+		self.editor.notelist.insert(0, priori_text)
 
 	def exit_command(self):
 		if tkMessageBox.askyesno("Quit","Are you sure?"):
