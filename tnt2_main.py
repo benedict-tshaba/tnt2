@@ -66,8 +66,8 @@ class Editor(object):
 		editor = tk.Frame(self.master)
 		notelistframe = tk.Frame(self.master)
 
-		text = tk.Text(editor,bg="white",height=8, width=4)
-		text.pack(side=tk.BOTTOM,fill=tk.BOTH,expand=1)
+		self.text = tk.Text(editor,bg="white",height=8, width=4)
+		self.text.pack(side=tk.BOTTOM,fill=tk.BOTH,expand=1)
 
 		scroll1v = tk.Scrollbar(notelistframe,orient=tk.VERTICAL)
 		scroll2h = tk.Scrollbar(notelistframe,orient=tk.HORIZONTAL)
@@ -81,13 +81,19 @@ class Editor(object):
 
 		editor.pack(fill=tk.BOTH,side=tk.LEFT)
 		notelistframe.pack(fill=tk.BOTH,expand=1,side=tk.RIGHT)
-		self.buttons = Buttons(editor,text,self.notelist)
-		text.bind("<Return>",self.return_insert)
+		self.buttons = Buttons(editor,self.text,self.notelist)
+		self.text.bind("<Return>",self.return_insert)
 		self.notelist.bind("<Double-Button-3>",self.delete_current)
+		self.notelist.bind("<Double-Button-1>",self.copy_to_text)
 		self.getNotes()
 
 	def return_insert(self,event):
 		self.buttons.enter()
+
+	def copy_to_text(self,event):
+		self.text.delete(1.0, tk.END)
+		current_note = self.notelist.get(tk.ANCHOR)
+		self.text.insert(1.0, current_note)
 
 	def delete_current(self,event):
 		self.buttons.remove()
