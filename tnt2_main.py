@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 
-__version__ = "0.0.1"
+__version__ = "1.0.1"
 __author__ = "Tshaba Phomolo Benedict"
 
 import Tkinter as tk
@@ -28,7 +28,7 @@ class MenuBar(object):
 		menubar = tk.Menu(self.master)
 		filemenu = tk.Menu(menubar,tearoff=0)
 		filemenu.add_command(label="Exit",command=self.exit_command)
-		menubar.add_cascade(label="TnT2",menu=filemenu)
+		menubar.add_cascade(label="TNT2",menu=filemenu)
 		menubar.add_separator()
 	
 		editmenu = tk.Menu(menubar, tearoff=0)
@@ -45,7 +45,7 @@ class MenuBar(object):
 		self.master.config(menu=menubar)
 	
 	def about_command(self):
-		pass
+		label = tkMessageBox.showinfo("About","Version: "+__version__+"\nTNT2 is a re-write of TNT using the OOP features of python. It is a simple note-taking application designed for ease of use. \nCreated by Tshaba Phomolo Benedict.")
 
 	def remove_command(self):
 		pass
