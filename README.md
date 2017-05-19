@@ -6,6 +6,6 @@ Visit My Website here: <link>http://www.benedict.heliohost.org</link>
 TODO:
 ##############################################################################
 1. Upgrade the encryption to use the AES algorithm because xor is very week.
-2. Clean up the UI.
+2. Finish implementing the Edit drop menu commands. 
 3. Implement Networking? - I currently dont see the usefulness of networking in this app.
  - But it would be cool if I had a webserver housing the notes.
