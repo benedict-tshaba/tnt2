@@ -10,6 +10,6 @@ TODO:
  - But it would be cool if I had a webserver housing the notes.
 
 INSTALL:
-    $ git clone git@github.com:benedict-tshaba/tnt2.git && cd tnt2
-    $ sudo python setup.py install
-    $ tnt2
+    git clone git@github.com:benedict-tshaba/tnt2.git && cd tnt2
+    sudo python setup.py install
+    tnt2
