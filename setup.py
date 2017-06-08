@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-setup(name='TNT2',
+setup(name='tnt2',
       version='1.0.1',
       description='A simple note taking program',
       author='Tshaba Phomolo B3n3dict',
