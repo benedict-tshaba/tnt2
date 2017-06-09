@@ -1,14 +1,13 @@
 #!/usr/bin/python
 
-
-__version__ = "1.0.1"
+__version__ = "1.0.3"
 __author__ = "Tshaba Phomolo Benedict"
 
 import Tkinter as tk
 import tkMessageBox
 import pickle
 import sched, time
-from tnt2lib import xor_crypt
+from lib.tnt2lib import xor_crypt
 
 notes_file = "notes.db"
 

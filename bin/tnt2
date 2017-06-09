@@ -1,0 +1,7 @@
+#!/usr/bin/python
+
+from tnt import tnt2_main as app
+import Tkinter as tk
+
+root = tk.Tk()
+myapp = app.Tnt2App(root)
