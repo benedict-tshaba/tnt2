@@ -159,7 +159,3 @@ class Buttons(object):
 		self.enterButton.pack(side=tk.LEFT)
 		self.removeButton.pack(side=tk.LEFT)
 		self.saveButton.pack(side=tk.LEFT)
-
-if __name__ == '__main__':
-	root = tk.Tk()
-	myapp = Tnt2App(root)
