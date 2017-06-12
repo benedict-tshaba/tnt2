@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-with open('README.md') as f:
+with open('README') as f:
     readme = f.read()
 
 with open('LICENSE') as f:
@@ -17,6 +17,5 @@ setup(name='tnt2',
       author_email='benedicttshaba@gmail.com',
       url='https://github.com/benedict-tshaba/tnt2',
       packages=['lib','tnt'],
-      include_package_data = True,
       license = license,
      )
