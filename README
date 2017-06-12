@@ -3,11 +3,7 @@ This is a new version of tnt where I used OOP concepts of Python. The result is 
 It also supports simple xor encryption, which I plan to upgrade to AES or RSA, but probably AES algorithm.
 Visit My Website here: <link>http://www.benedict.heliohost.org</link>
 
-TODO:
 ##############################################################################
-1. Upgrade the encryption to use the AES algorithm because xor is very weak.
-2. Implement Networking? - I currently dont see the usefulness of networking in this app.
- - But it would be cool if I had a webserver housing the notes.
 
 **INSTALLATION:**
 ```bash
@@ -15,4 +11,9 @@ TODO:
     chmod +x setup.py
     sudo ./setup.py install
     tnt2
+
+Alternatively:
+
+sudo pip install tnt2
 ```
+
