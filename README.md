@@ -14,6 +14,8 @@ Visit My Website here: <link>http://www.benedict.heliohost.org</link>
 
 Alternatively:
 
+#first install Tkinter if you dont have it already.
+sudo apt-install python-tk
 sudo pip install tnt2
 ```
 
