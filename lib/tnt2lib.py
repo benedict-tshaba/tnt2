@@ -37,3 +37,49 @@ def xor_crypt(s,mode):
 		except ValueError:
 			pass 
 	return ''.join(resulttxt)
+
+def xor_crypt2(s, mode):
+	"""returns a string of encoded text"""
+	sLen = len(s)
+	perm = perm_func(list(s), sLen)
+	key = gen_key(perm)
+	resulttxt = []
+	temp = []
+	i = 0
+	if(mode == 'e'):
+		while i < sLen:
+			temp.append(ord(s[i]) + key)
+			i += 1
+	if(mode == 'd'):
+		while i < sLen:
+			temp.append(ord(s[i]) - key)
+			i += 1
+	for e in temp:
+		try:
+			resulttxt.append(chr(e))
+		except ValueError:
+			pass 
+	return ''.join(resulttxt)
+
+def perm_func(perm, len):
+	count = 0
+	for i in range(len):
+		if count == len-1:
+			perm.append(perm[0])
+			return perm
+		perm.append(perm[i+1])
+		count += 1
+	return perm
+
+def gen_key(perm):
+	ln = len(perm)
+	key_ln = ln/2
+	key_gen = 0
+	key = [ord(i) for i in perm[key_ln:]]
+	
+	for i in key:
+		key_gen += i
+	
+	return key_gen
+
+
