@@ -53,7 +53,7 @@ def xor_crypt(s,mode):
 
 	sLen = len(s)
 	try: 
-		with open("data/key.kb", 'r') as f:
+		with open(".key.kb", 'r') as f:
 			key = pickle.load(f)
 	except :
 		print "Error: No key was found. \n"
@@ -61,7 +61,7 @@ def xor_crypt(s,mode):
 		print "Older notes will not be readable!\n"
 		perm = perm_func(list(s),  sLen)
 		key = gen_key(perm)
-		with open("data/key.kb", 'w') as f:
+		with open(".key.kb", 'w') as f:
 			pickle.dump(key, f)
 		
 
