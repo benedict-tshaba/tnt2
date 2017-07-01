@@ -15,7 +15,7 @@ setup(name='tnt2',
       long_description = readme,
       author='Tshaba Phomolo Benedict',
       author_email='benedicttshaba@gmail.com',
-      url='https://github.com/benedict-tshaba/tnt2',
+      url='https://github.com/benedict-tshaba/tnt2/tree/v126',
       packages=['tnt'],
       license = license,
      )
