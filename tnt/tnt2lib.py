@@ -17,48 +17,56 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import base64
+import hashlib
+from Crypto import Random
+from Crypto.Cipher import AES
+
+class AESCipher(object):
+
+    def __init__(self, key): 
+        self.bs = 32
+        self.key = hashlib.sha256(key.encode()).digest()
+
+    def encrypt(self, raw):
+        raw = self._pad(raw)
+        iv = Random.new().read(AES.block_size)
+        cipher = AES.new(self.key, AES.MODE_CBC, iv)
+        return base64.b64encode(iv + cipher.encrypt(raw))
+
+    def decrypt(self, enc):
+        enc = base64.b64decode(enc)
+        iv = enc[:AES.block_size]
+        cipher = AES.new(self.key, AES.MODE_CBC, iv)
+        return self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
+
+    def _pad(self, s):
+        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+
+    @staticmethod
+    def _unpad(s):
+        return s[:-ord(s[len(s)-1:])]
+
 def xor_crypt(s,mode):
 	"""returns a string of encoded text"""
+	
 	sLen = len(s)
-	resulttxt = []
-	temp = []
-	i = 0
-	if(mode == 'e'):
-		while i < sLen:
-			temp.append(ord(s[i]) + i)
-			i += 1
-	if(mode == 'd'):
-		while i < sLen:
-			temp.append(ord(s[i]) - i)
-			i += 1
-	for e in temp:
-		try:
-			resulttxt.append(chr(e))
-		except ValueError:
-			pass 
-	return ''.join(resulttxt)
-
-def xor_crypt2(s, mode):
-	"""returns a string of encoded text"""
-	sLen = len(s)
-	perm = perm_func(list(s), sLen)
+	perm = perm_func(list(s),  sLen)
 	key = gen_key(perm)
-	resulttxt = []
-	temp = []
-	i = 0
-	if(mode == 'e'):
-		while i < sLen:
-			temp.append(ord(s[i]) + key)
-			i += 1
-	if(mode == 'd'):
-		while i < sLen:
-			temp.append(ord(s[i]) - key)
-			i += 1
-	for e in temp:
-		try:
-			resulttxt.append(chr(e))
+	encalg = AESCipher(key)
+	 resulttxt = []
+	 temp = []
+	 i = 0
+	 if(mode == 'e'):
+	 	temp.append(encalg.encrypt())
+	 if(mode == 'd'):
+	 	temp.append(encalg.decrypt())
+	 	
+	 for e in temp:
+	 	try:
+	 		resulttxt.append(chr(e))
 		except ValueError:
-			pass 
+	 		pass 
 	return ''.join(resulttxt)
 
 def perm_func(perm, len):
@@ -81,5 +89,3 @@ def gen_key(perm):
 		key_gen += i
 	
 	return key_gen
-
-
