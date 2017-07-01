@@ -21,6 +21,7 @@ import base64
 import hashlib
 from Crypto import Random
 from Crypto.Cipher import AES
+import pickle
 
 class AESCipher(object):
 
@@ -51,23 +52,21 @@ def xor_crypt(s,mode):
 	"""returns a string of encoded text"""
 	
 	sLen = len(s)
-	perm = perm_func(list(s),  sLen)
-	key = gen_key(perm)
-	encalg = AESCipher(key)
-	 resulttxt = []
-	 temp = []
-	 i = 0
-	 if(mode == 'e'):
-	 	temp.append(encalg.encrypt())
-	 if(mode == 'd'):
-	 	temp.append(encalg.decrypt())
-	 	
-	 for e in temp:
-	 	try:
-	 		resulttxt.append(chr(e))
-		except ValueError:
-	 		pass 
-	return ''.join(resulttxt)
+
+	try: 
+		key = pickle.load("data/key.kb")
+	except:
+		perm = perm_func(list(s),  sLen)
+		key = gen_key(perm)
+		with open("data/key.kb", 'w') as f:
+			pickle.dump(key, f)
+
+	encalg = AESCipher(str(key))
+
+	if(mode == 'e'):
+		return encalg.encrypt(s)
+	if(mode == 'd'):
+		return encalg.decrypt(s)
 
 def perm_func(perm, len):
 	count = 0
