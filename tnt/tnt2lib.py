@@ -56,9 +56,10 @@ def xor_crypt(s,mode):
 		with open(".key.kb", 'r') as f:
 			key = pickle.load(f)
 	except :
-		print "Error: No key was found. \n"
+		print "Warning: No key was found. If you are running the app \
+                lication for the first time this is nothing to worry about.\n"
 		print "Generating new key and saving..."
-		print "Older notes will not be readable!\n"
+		print "If you lost your first key, then those notes will not be readable!\n"
 		perm = perm_func(list(s),  sLen)
 		key = gen_key(perm)
 		with open(".key.kb", 'w') as f:

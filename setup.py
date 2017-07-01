@@ -11,7 +11,7 @@ with open('LICENSE') as f:
 setup(name='tnt2',
       scripts=['bin/tnt2'],
       version='1.2.7',
-      description='A simple note taking program',
+      description='A simple note taking program with advanced encryption',
       long_description = readme,
       author='Tshaba Phomolo Benedict',
       author_email='benedicttshaba@gmail.com',
