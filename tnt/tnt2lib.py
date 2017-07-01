@@ -26,7 +26,7 @@ import pickle
 class AESCipher(object):
 
     def __init__(self, key): 
-        self.bs = 32
+        self.block_size = 32
         self.key = hashlib.sha256(key.encode()).digest()
 
     def encrypt(self, raw):
@@ -42,7 +42,7 @@ class AESCipher(object):
         return self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
 
     def _pad(self, s):
-        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+        return s + (self.block_size - len(s) % self.block_size) * chr(self.block_size - len(s) % self.block_size)
 
     @staticmethod
     def _unpad(s):
@@ -50,16 +50,20 @@ class AESCipher(object):
 
 def xor_crypt(s,mode):
 	"""returns a string of encoded text"""
-	
-	sLen = len(s)
 
+	sLen = len(s)
 	try: 
-		key = pickle.load("data/key.kb")
-	except:
+		with open("data/key.kb", 'r') as f:
+			key = pickle.load(f)
+	except :
+		print "Error: No key was found. \n"
+		print "Generating new key and saving..."
+		print "Older notes will not be readable!\n"
 		perm = perm_func(list(s),  sLen)
 		key = gen_key(perm)
 		with open("data/key.kb", 'w') as f:
 			pickle.dump(key, f)
+		
 
 	encalg = AESCipher(str(key))
 

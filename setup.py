@@ -10,12 +10,12 @@ with open('LICENSE') as f:
 
 setup(name='tnt2',
       scripts=['bin/tnt2'],
-      version='1.2.0',
+      version='1.2.6',
       description='A simple note taking program',
       long_description = readme,
       author='Tshaba Phomolo Benedict',
       author_email='benedicttshaba@gmail.com',
       url='https://github.com/benedict-tshaba/tnt2',
-      packages=['lib','tnt'],
+      packages=['tnt'],
       license = license,
      )
