@@ -25,7 +25,7 @@ import Tkinter as tk
 import tkMessageBox
 import pickle
 import sched, time
-from tnt2lib import xor_crypt
+from .tnt2lib import xor_crypt
 
 notes_file = "notes.db"
 
