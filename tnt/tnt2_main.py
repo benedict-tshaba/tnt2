@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-__version__ = "1.2.7"
+__version__ = "1.2.8"
 __author__ = "Tshaba Phomolo Benedict"
 
 import Tkinter as tk
@@ -83,7 +83,7 @@ class Editor(object):
 		editor = tk.Frame(self.master)
 		notelistframe = tk.Frame(self.master)
 
-		self.text = tk.Text(editor,bg="white",height=8, width=4)
+		self.text = tk.Text(editor,bg="grey",height=8, width=4)
 		self.text.pack(side=tk.BOTTOM,fill=tk.BOTH,expand=1)
 
 		scroll1v = tk.Scrollbar(notelistframe,orient=tk.VERTICAL)
