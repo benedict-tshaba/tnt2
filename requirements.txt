@@ -1,2 +1,2 @@
 cryptography==1.7.1
-pycrypto==2.6.1
+pycryptodome==3.9.6
